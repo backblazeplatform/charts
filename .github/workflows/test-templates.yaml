@@ -36,11 +36,11 @@ jobs:
         uses: azure/setup-helm@v3
         with:
           version: v3.8.1
-      - name: Setup Deps ${{ matrix.manifest }}
-        working-directory: charts/${{ matrix.manifest }}
-        run: |
-          helm repo add backblazeplatform https://backblazeplatform.github.io/charts
-          helm dependency update
+      #- name: Setup Deps ${{ matrix.manifest }}
+      #  working-directory: charts/${{ matrix.manifest }}
+      #  run: |
+      #    helm repo add backblazeplatform https://backblazeplatform.github.io/charts
+      #    helm dependency update
       - name: Test ${{ matrix.manifest }} Examples
         working-directory: charts/${{ matrix.manifest }}
         run: |
