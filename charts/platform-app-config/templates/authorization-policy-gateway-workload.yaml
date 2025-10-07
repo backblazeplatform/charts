@@ -5,19 +5,19 @@
 {{- $gateway := $istio.components.gateway -}}
 {{- if and $app.host $istio.enabled $gateway.enabled -}}
 {{ $appName := default $app.name $appKey }}
-{{- include "skyfjell.common.require.api.istio.authorization-policy" $ -}}
+{{- include "backblazeplatform.common.require.api.istio.authorization-policy" $ -}}
 ---
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
-  name: {{ list $gateway.namespace $gateway.name ( default $appName $app.namespace ) $appName | include "skyfjell.common.format.name" }}
+  name: {{ list $gateway.namespace $gateway.name ( default $appName $app.namespace ) $appName | include "backblazeplatform.common.format.name" }}
   namespace: {{ default $appName $app.namespace }}
-  labels: {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+  labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
     {{- include "platform-app-config.labels" $ | nindent 4 }}
-    skyfjell.io/from-ns: {{ $gateway.namespace }}
-    skyfjell.io/from: {{ $gateway.name }}
-    skyfjell.io/to-ns: {{ default $appName $app.namespace}}
-    skyfjell.io/to: {{ $appName }}
+    backblazeplatform.io/from-ns: {{ $gateway.namespace }}
+    backblazeplatform.io/from: {{ $gateway.name }}
+    backblazeplatform.io/to-ns: {{ default $appName $app.namespace}}
+    backblazeplatform.io/to: {{ $appName }}
 spec:
   action: ALLOW
   selector:

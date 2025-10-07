@@ -224,15 +224,15 @@ components:
         podSecurityStandard: "restricted"
         # Override Chart Values
         values: {}
-      skyfjellPolicies:
+      backblazeplatformPolicies:
         # Toggle Component
         enabled: true
         # Component release name. Will be prefixed by parent component(s)
-        name: policies-skyfjell
+        name: policies-backblazeplatform
         chart:
           name: kyverno-policies
           version: "0.1.0"
-          # Uses the skyfjell helm repository by default.
+          # Uses the backblazeplatform helm repository by default.
           source: {}
         values: {}
   minio:
@@ -419,9 +419,9 @@ components:
         name: minio
         url: https://operator.min.io
         enabled: true
-      skyfjell:
-        name: skyfjell
-        url: https://charts.skyfjell.io
+      backblazeplatform:
+        name: backblazeplatform
+        url: https://charts.backblazeplatform.io
         enabled: true
       vmware:
         name: vmware
@@ -436,6 +436,6 @@ global:
   nodeSelector: {}
   tolerations: []
   istioEnabled: true
-  skyfjell:
+  backblazeplatform:
     validate:
       api: true

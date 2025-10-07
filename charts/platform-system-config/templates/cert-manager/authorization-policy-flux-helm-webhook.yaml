@@ -1,6 +1,6 @@
 {{- $component := .Values.components.certManager -}}
 {{ if and .Values.components.istio.enabled $component.enabled (eq .Values.solution.name "flux") -}}
-{{ include "skyfjell.common.require.api.istio.authorization-policy" . -}}
+{{ include "backblazeplatform.common.require.api.istio.authorization-policy" . -}}
 ---
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
@@ -11,7 +11,7 @@ spec:
   action: ALLOW
   selector:
     matchLabels:
-      app.kubernetes.io/instance: {{ list .Values.prefix $component.name | include "skyfjell.common.format.name" }}
+      app.kubernetes.io/instance: {{ list .Values.prefix $component.name | include "backblazeplatform.common.format.name" }}
       app.kubernetes.io/component: webhook
   rules:
     - to:

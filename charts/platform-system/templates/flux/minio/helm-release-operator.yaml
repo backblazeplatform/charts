@@ -15,10 +15,10 @@ metadata:
   namespace: {{ $solution.namespace | quote }}
   labels:
     {{- include "platform-system.labels" $ | nindent 4 }}
-    {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+    {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
 spec:
   releaseName: {{ list $component.name $ | include "platform-system.format.name" }}
-  targetNamespace: {{ list $parent . | include "skyfjell.common.format.component.namespace" }}
+  targetNamespace: {{ list $parent . | include "backblazeplatform.common.format.component.namespace" }}
   dependsOn:
     {{- include "platform-system.require.dependencies" $ | nindent 4 }}
   chart:

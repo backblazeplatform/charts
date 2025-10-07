@@ -8,14 +8,14 @@
 {{- range $host := $parent.hosts }}
 {{- $uniqId := sha256sum $host | trunc 8 -}}
 
-{{- include "skyfjell.common.require.api.cert-manager.certificate" $ -}}
+{{- include "backblazeplatform.common.require.api.cert-manager.certificate" $ -}}
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: {{ list $parent.name $uniqId $ | include "platform-auth.format.name" }}
   namespace: {{ $gateway.namespace }}
-  labels: {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+  labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
 spec:
   secretName: {{ list $parent.name $uniqId $ | include "platform-auth.format.name" | printf "%s-tls" }}
   dnsNames:

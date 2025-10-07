@@ -2,12 +2,12 @@
 {{- $component := $parent.components.proxyQuit }}
 {{- $name := list $parent.name $component.name $ | include "kyverno-policies.format.name" }}
 {{- if $component.enabled }}
-{{- include "skyfjell.common.require.api.kyverno.cluster-policy" $ -}}
+{{- include "backblazeplatform.common.require.api.kyverno.cluster-policy" $ -}}
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
   name: {{ $name }}
-  labels: {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+  labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
   {{- include "kyverno-policies.labels" $ | nindent 4 }}
   annotations:
     policies.kyverno.io/title: Istio Proxy Quit Cluster Policy
@@ -25,7 +25,7 @@ spec:
   background: false
   validationFailureAction: enforce
   rules:
-    - name: {{ list $parent.name $component.name "create-role" | include "skyfjell.common.format.name" }}
+    - name: {{ list $parent.name $component.name "create-role" | include "backblazeplatform.common.format.name" }}
       match:
         any:
           - resources:
@@ -33,26 +33,26 @@ spec:
                 - Pod
       preconditions:
         any:
-          - key: {{ "(request.object.metadata.ownerReferences || `[]`)[?kind=='Job'] | length(@)" | include "skyfjell.common.format.literal" | quote }}
+          - key: {{ "(request.object.metadata.ownerReferences || `[]`)[?kind=='Job'] | length(@)" | include "backblazeplatform.common.format.literal" | quote }}
             operator: GreaterThan
             value: 0
       generate:
         apiVersion: rbac.authorization.k8s.io/v1
         kind: Role
-        name: {{ "request.object.metadata.name" | include "skyfjell.common.format.literal" | quote }}
-        namespace:  {{ "request.object.metadata.namespace" | include "skyfjell.common.format.literal" | quote }}
+        name: {{ "request.object.metadata.name" | include "backblazeplatform.common.format.literal" | quote }}
+        namespace:  {{ "request.object.metadata.namespace" | include "backblazeplatform.common.format.literal" | quote }}
         synchronize: true
         data:
           metadata:
-            name: {{ "request.object.metadata.name" | include "skyfjell.common.format.literal" | quote }}
-            labels: {{- include "skyfjell.common.chartLabels" $ | nindent 14 }}
+            name: {{ "request.object.metadata.name" | include "backblazeplatform.common.format.literal" | quote }}
+            labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 14 }}
             {{- include "kyverno-policies.labels" $ | nindent 14 }}
-              skyfjell.io/istio-proxy-quit: {{ "request.object.spec.serviceAccountName" | include "skyfjell.common.format.literal" | quote }}
+              backblazeplatform.io/istio-proxy-quit: {{ "request.object.spec.serviceAccountName" | include "backblazeplatform.common.format.literal" | quote }}
             ownerReferences:
               - apiVersion: v1
                 kind: Pod
-                name: {{ "request.object.metadata.name" | include "skyfjell.common.format.literal" | quote }}
-                uid: {{ "request.object.metadata.uid" | include "skyfjell.common.format.literal" | quote }}
+                name: {{ "request.object.metadata.name" | include "backblazeplatform.common.format.literal" | quote }}
+                uid: {{ "request.object.metadata.uid" | include "backblazeplatform.common.format.literal" | quote }}
                 controller: true
                 blockOwnerDeletion: true
           rules:
@@ -60,8 +60,8 @@ spec:
               resources: ["pods"]
               verbs: ["get"]
               resourceNames:
-                - {{ "request.object.metadata.name" | include "skyfjell.common.format.literal" | quote }}
-    - name: {{ list $parent.name $component.name "mutate-container" | include "skyfjell.common.format.name" }}
+                - {{ "request.object.metadata.name" | include "backblazeplatform.common.format.literal" | quote }}
+    - name: {{ list $parent.name $component.name "mutate-container" | include "backblazeplatform.common.format.name" }}
       match:
         any:
           - resources:
@@ -69,7 +69,7 @@ spec:
                 - Pod
       preconditions:
         any:
-          - key: {{ "(request.object.metadata.ownerReferences || `[]`)[?kind=='Job'] | length(@)" | include "skyfjell.common.format.literal" | quote }}
+          - key: {{ "(request.object.metadata.ownerReferences || `[]`)[?kind=='Job'] | length(@)" | include "backblazeplatform.common.format.literal" | quote }}
             operator: GreaterThan
             value: 0
       mutate:
@@ -77,7 +77,7 @@ spec:
           spec:
             automountServiceAccountToken: true
             containers:
-              - name: {{ list $parent.name $component.name | include "skyfjell.common.format.name" }}
+              - name: {{ list $parent.name $component.name | include "backblazeplatform.common.format.name" }}
                 image: {{ printf "%s/%s:%s" $component.image.registry $component.image.repository $component.image.tag }}
                 imagePullPolicy: {{ $component.image.pullPolicy}}
                 securityContext:
@@ -93,12 +93,12 @@ spec:
                       fieldRef:
                         fieldPath: metadata.name
                   - name: K8S_SELF_NAME
-                    value: {{ list $parent.name $component.name | include "skyfjell.common.format.name" }}
+                    value: {{ list $parent.name $component.name | include "backblazeplatform.common.format.name" }}
                   {{- range $component.env }}
                   - name: {{ .name }}
                     {{- toYaml ( omit . "name") | nindent 22 }}
                   {{- end }}
-    - name: {{ list $parent.name $component.name "create-rolebinding" | include "skyfjell.common.format.name" }}
+    - name: {{ list $parent.name $component.name "create-rolebinding" | include "backblazeplatform.common.format.name" }}
       match:
         any:
           - resources:
@@ -106,33 +106,33 @@ spec:
                 - Role
       preconditions:
         all:
-          - key: {{ "(request.object.metadata.ownerReferences || `[]`)[?kind=='Pod'] | length(@)" | include "skyfjell.common.format.literal" | quote }}
+          - key: {{ "(request.object.metadata.ownerReferences || `[]`)[?kind=='Pod'] | length(@)" | include "backblazeplatform.common.format.literal" | quote }}
             operator: GreaterThan
             value: 0
       generate:
         apiVersion: rbac.authorization.k8s.io/v1
         kind: RoleBinding
-        name: {{ "request.object.metadata.name" | include "skyfjell.common.format.literal" | quote }}
-        namespace:  {{ "request.object.metadata.namespace" | include "skyfjell.common.format.literal" | quote }}
+        name: {{ "request.object.metadata.name" | include "backblazeplatform.common.format.literal" | quote }}
+        namespace:  {{ "request.object.metadata.namespace" | include "backblazeplatform.common.format.literal" | quote }}
         synchronize: true
         data:
           metadata:
-            name: {{ "request.object.metadata.name" | include "skyfjell.common.format.literal" | quote }}
-            labels: {{- include "skyfjell.common.chartLabels" $ | nindent 16 }}
+            name: {{ "request.object.metadata.name" | include "backblazeplatform.common.format.literal" | quote }}
+            labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 16 }}
             {{- include "kyverno-policies.labels" $ | nindent 16 }}
             ownerReferences:
               - apiVersion: rbac.authorization.k8s.io/v1
                 kind: Role
-                name: {{ "request.object.metadata.name" | include "skyfjell.common.format.literal" | quote }}
-                uid: {{ "request.object.metadata.uid" | include "skyfjell.common.format.literal" | quote }}
+                name: {{ "request.object.metadata.name" | include "backblazeplatform.common.format.literal" | quote }}
+                uid: {{ "request.object.metadata.uid" | include "backblazeplatform.common.format.literal" | quote }}
                 controller: true
                 blockOwnerDeletion: true
           subjects:
             - kind: ServiceAccount
-              name: {{ "request.object.metadata.labels.\"skyfjell.io/istio-proxy-quit\"" | include "skyfjell.common.format.literal" | quote }}
-              namespace: {{ "request.object.metadata.namespace" | include "skyfjell.common.format.literal" | quote }}
+              name: {{ "request.object.metadata.labels.\"backblazeplatform.io/istio-proxy-quit\"" | include "backblazeplatform.common.format.literal" | quote }}
+              namespace: {{ "request.object.metadata.namespace" | include "backblazeplatform.common.format.literal" | quote }}
           roleRef:
             kind: Role
-            name: {{ "request.object.metadata.name" | include "skyfjell.common.format.literal" | quote }}
+            name: {{ "request.object.metadata.name" | include "backblazeplatform.common.format.literal" | quote }}
             apiGroup: rbac.authorization.k8s.io
 {{- end -}}

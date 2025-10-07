@@ -5,7 +5,7 @@
 {{- if and $parent.components $.Values.components.istio.enabled -}}
 {{- range $componentKey := ( keys $parent.components | sortAlpha ) -}}
 {{- $component := get $parent.components $componentKey -}}
-{{- include "skyfjell.common.require.api.istio.authorization-policy" $ -}}
+{{- include "backblazeplatform.common.require.api.istio.authorization-policy" $ -}}
 {{ $parentName := default $parentKey $parent.name }}
 {{ $componentName := default $componentKey $component.name }}
 {{- if or $component.operations $component.ports -}}
@@ -15,12 +15,12 @@ kind: AuthorizationPolicy
 metadata:
   name: {{ list $parentName "to" $componentName $ | include "platform-app-config.format.name" }}
   namespace: {{ default $parent.namespace $component.namespace | default $parentName }}
-  labels: {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+  labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
     {{- include "platform-app-config.labels" $ | nindent 4 }}
-    skyfjell.io/from-ns: {{ default $parentName $parent.namespace }}
-    skyfjell.io/to-ns: {{ default $parent.namespace $component.namespace | default $parentName }}
-    skyfjell.io/from: {{ $parentName }}
-    skyfjell.io/to: {{ $componentName }}
+    backblazeplatform.io/from-ns: {{ default $parentName $parent.namespace }}
+    backblazeplatform.io/to-ns: {{ default $parent.namespace $component.namespace | default $parentName }}
+    backblazeplatform.io/from: {{ $parentName }}
+    backblazeplatform.io/to: {{ $componentName }}
 spec:
   action: ALLOW
   selector:

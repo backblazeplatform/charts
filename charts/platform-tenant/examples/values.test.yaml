@@ -15,7 +15,7 @@ components:
     enabled: false
     components:
       source:
-        url: ssh://git@github.com/skyfjell/manifests/test
+        url: ssh://git@github.com/backblazeplatform/manifests/test
   serviceAccount:
     enabled: false
     annotations:

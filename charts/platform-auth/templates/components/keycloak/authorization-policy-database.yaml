@@ -3,26 +3,26 @@
 {{- $component := $parent.components.server -}}
 
 {{- $istio := .Values.components.istio -}}
-{{- $namespace := list $parent $ | include "skyfjell.common.format.component.namespace" -}}
+{{- $namespace := list $parent $ | include "backblazeplatform.common.format.component.namespace" -}}
 
 {{- if and $parent.enabled $component.enabled $parent.hosts $istio.enabled -}}
-{{- include "skyfjell.common.require.api.istio.authorization-policy" $ -}}
+{{- include "backblazeplatform.common.require.api.istio.authorization-policy" $ -}}
 ---
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
-  name: {{ list $parent.namespace $parent.name $database.name | include "skyfjell.common.format.name" }}
+  name: {{ list $parent.namespace $parent.name $database.name | include "backblazeplatform.common.format.name" }}
   namespace: {{ $namespace }}
-  labels: {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
-    skyfjell.io/from-ns: {{ $namespace }}
-    skyfjell.io/from: {{ $parent.name }}
-    skyfjell.io/to-ns: {{ $namespace }}
-    skyfjell.io/to: {{ $parent.name }}
+  labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
+    backblazeplatform.io/from-ns: {{ $namespace }}
+    backblazeplatform.io/from: {{ $parent.name }}
+    backblazeplatform.io/to-ns: {{ $namespace }}
+    backblazeplatform.io/to: {{ $parent.name }}
 spec:
   action: ALLOW
   selector:
     matchLabels:
-      app: {{ list $parent.name $database.name | include "skyfjell.common.format.name" }}
+      app: {{ list $parent.name $database.name | include "backblazeplatform.common.format.name" }}
   rules:
     - from:
         - source:

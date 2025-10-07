@@ -1,3 +1,3 @@
 # keycloak-slackbot
 
-Helm chart for https://github.com/skyfjell/keycloak-slackbot
+Helm chart for https://github.com/backblazeplatform/keycloak-slackbot

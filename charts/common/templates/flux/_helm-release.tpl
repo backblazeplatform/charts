@@ -1,4 +1,4 @@
-{{- define "skyfjell.common.template.flux.helm-release" -}}
+{{- define "backblazeplatform.common.template.flux.helm-release" -}}
 {{- $ := last . -}}
 {{- /*
 # deepCopy to prevent mutating values
@@ -19,7 +19,7 @@
 {{- end -}}
 
 {{- if and $component.enabled $solution.enabled }}
-{{- include "skyfjell.common.require.api.flux.helm-release" $ -}}
+{{- include "backblazeplatform.common.require.api.flux.helm-release" $ -}}
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -28,10 +28,10 @@ metadata:
   namespace: {{ $solution.namespace }}
   labels:
     {{- include (printf "%s.labels" $.Chart.Name) $ | nindent 4 }}
-    {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+    {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
 spec:
   releaseName: {{ $name }}
-  targetNamespace: {{ list $component $ | include "skyfjell.common.format.component.namespace" }}
+  targetNamespace: {{ list $component $ | include "backblazeplatform.common.format.component.namespace" }}
   # TODO: Support local and existing dependsOn
   chart:
     spec:
@@ -64,7 +64,7 @@ spec:
     {{- $child = set $child "aggregateName" $component.name -}}
     {{- $child = default $component.name $component.namespace $child.namespace | set $child "namespace" -}}
     {{- $child = append $component.ancestorNames $component.name | set $child "ancestorNames" -}}
-    {{- list $child $ | include "skyfjell.common.template.flux.helm-release" -}}
+    {{- list $child $ | include "backblazeplatform.common.template.flux.helm-release" -}}
   {{- end }}
 {{- end }}
 

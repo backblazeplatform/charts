@@ -7,14 +7,14 @@
 -}}
 
 {{- if $enabled }}
-{{- include "skyfjell.common.require.api.flux.source" . -}}
+{{- include "backblazeplatform.common.require.api.flux.source" . -}}
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
   name: {{ list $component.name $ | include "platform-auth.format.name" }}
   namespace: {{ .Values.components.flux.namespace }}
-  labels: {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+  labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
 spec:
   url: {{ $component.url }}
   interval: 10m

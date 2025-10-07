@@ -1,4 +1,4 @@
-# Skyfjell Platform System Helm Chart
+# Backblaze Platform Platform System Helm Chart
 
 The Platform System chart installs core services, configuration between those services, and baseline policies to a Kubernetes cluster.
 
@@ -38,10 +38,10 @@ A [`default-deny`](https://istio.io/latest/docs/ops/best-practices/security/#use
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
-  name: skyfjell
+  name: backblazeplatform
   namespace: flux-system
 spec:
-  url: https://charts.skyfjell.io/
+  url: https://charts.backblazeplatform.io/
   interval: 1m
 ```
 
@@ -58,7 +58,7 @@ spec:
       chart: charts/platform-system
       sourceRef:
         kind: GitRepository
-        name: skyfjell
+        name: backblazeplatform
         namespace: flux-system
   interval: 0h10m0s
   values:
@@ -78,17 +78,17 @@ spec:
 
 ### CLI
 
-Add the skyfjell repo if necessary:
+Add the backblazeplatform repo if necessary:
 
 ```shell
-$ helm repo add skyfjell https://charts.skyfjell.io
+$ helm repo add backblazeplatform https://charts.backblazeplatform.io
 $ helm repo update
 ```
 
 Basic installation:
 
 ```shell
-$ helm install system skyfjell/platform-system
+$ helm install system backblazeplatform/platform-system
 ```
 
 ## Configuration
@@ -113,7 +113,7 @@ components:
   <summary>CLI:</summary>
 
 ```shell
-$ helm install system skyfjell/platform-system \
+$ helm install system backblazeplatform/platform-system \
   --set="components.istio.components.gateway.enabled=true"
 ```
 
@@ -139,7 +139,7 @@ components:
   <summary>CLI:</summary>
 
 ```shell
-$ helm install system skyfjell/platform-system \
+$ helm install system backblazeplatform/platform-system \
   --set="components.istio.components.istiod.components.externalAuth.enabled=true"
 ```
 
@@ -168,7 +168,7 @@ Kyverno is the default policy engine for the chart.
 #### Installed Policies
 
 - Kyverno upstream [kyverno-policies](https://github.com/kyverno/kyverno/tree/main/charts/kyverno-policies) with `podSecurityStandard` set to `restricted` by default
-- skyfjell [kyverno-policies](https://github.com/skyfjell/charts/tree/main/charts/kyverno-policies)
+- backblazeplatform [kyverno-policies](https://github.com/backblazeplatform/charts/tree/main/charts/kyverno-policies)
   - Enforce Istio Namespace Injection
   - `istio-proxy-quit` for jobs
 
@@ -193,6 +193,6 @@ Validation of the current cluster contexts APIs are performed on installation, t
 To disable API/CRD validation checks when templating, in development, or for dry runs:
 
 ```shell
-$ helm template skyfjell/[chart-name] \
-  --set"global.skyfjell.validate.api=false"
+$ helm template backblazeplatform/[chart-name] \
+  --set"global.backblazeplatform.validate.api=false"
 ```

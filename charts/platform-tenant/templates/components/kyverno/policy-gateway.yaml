@@ -6,15 +6,15 @@
 {{- $name := list $key $ | include "platform-tenant.format.name.local" -}}
 {{- $namespace := $.Values.components.istio.components.gateway.namespace -}}
 
-{{- include "skyfjell.common.require.api.kyverno.cluster-policy" . -}}
+{{- include "backblazeplatform.common.require.api.kyverno.cluster-policy" . -}}
 
 {{- $certManager := .Values.components.certManager -}}
 
 {{- if and $certManager.enabled (not $certManager.issuerRef) -}}
   {{- fail ".Values.components.certManager.issuerRef needs to be defined." -}}
 {{- end -}}
-{{- $certName := ( printf "%s-cert" ( "request.object.metadata.name" | include "skyfjell.common.format.literal" ) | quote) -}}
-{{- include "skyfjell.common.require.api.cert-manager.certificate" . -}}
+{{- $certName := ( printf "%s-cert" ( "request.object.metadata.name" | include "backblazeplatform.common.format.literal" ) | quote) -}}
+{{- include "backblazeplatform.common.require.api.cert-manager.certificate" . -}}
 
 ---
 apiVersion: kyverno.io/v1
@@ -22,7 +22,7 @@ kind: Policy
 metadata:
   name: {{ printf "%s-cert-create" $name }}
   namespace: {{ $namespace }}
-  labels: {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+  labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
   annotations:
     policies.kyverno.io/title: Gateway policy
     policies.kyverno.io/category: Networking
@@ -38,7 +38,7 @@ spec:
             - Gateway
       preconditions:
         any:
-          - key: {{ printf "request.object.spec.servers[*].hosts[?ends_with(@,'%s')][] | length(@)" $component.domains | include "skyfjell.common.format.literal" | quote }}
+          - key: {{ printf "request.object.spec.servers[*].hosts[?ends_with(@,'%s')][] | length(@)" $component.domains | include "backblazeplatform.common.format.literal" | quote }}
             operator: GreaterThan
             value: 0
       generate:
@@ -49,16 +49,16 @@ spec:
         data:
           metadata:
             name: {{ $certName }}
-            labels: {{- include "skyfjell.common.chartLabels" $ | nindent 14 }}
+            labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 14 }}
             ownerReferences:
-              - apiVersion: {{ "request.object.apiVersion" | include "skyfjell.common.format.literal" | quote }}
-                kind: {{ "request.object.kind" | include "skyfjell.common.format.literal" | quote }}
-                name: {{ "request.object.metadata.name" | include "skyfjell.common.format.literal" | quote }}
-                uid: {{ "request.object.metadata.uid" | include "skyfjell.common.format.literal" | quote }}
+              - apiVersion: {{ "request.object.apiVersion" | include "backblazeplatform.common.format.literal" | quote }}
+                kind: {{ "request.object.kind" | include "backblazeplatform.common.format.literal" | quote }}
+                name: {{ "request.object.metadata.name" | include "backblazeplatform.common.format.literal" | quote }}
+                uid: {{ "request.object.metadata.uid" | include "backblazeplatform.common.format.literal" | quote }}
                 controller: true
                 blockOwnerDeletion: true
           spec:
-            secretName: {{ "request.object.spec.servers[?port.protocol == 'HTTPS' && (tls && tls.mode == 'SIMPLE' && tls.credentialName) ].tls.credentialName | @[0]" | include "skyfjell.common.format.literal" | quote }}
+            secretName: {{ "request.object.spec.servers[?port.protocol == 'HTTPS' && (tls && tls.mode == 'SIMPLE' && tls.credentialName) ].tls.credentialName | @[0]" | include "backblazeplatform.common.format.literal" | quote }}
             issuerRef: {{- $certManager.issuerRef | toYaml | nindent 14 }}
-            dnsNames: {{ "request.object.spec.servers[?port.protocol == 'HTTPS' && (tls && tls.mode == 'SIMPLE' && tls.credentialName) ].hosts | @[]" | include "skyfjell.common.format.literal" | quote }}
+            dnsNames: {{ "request.object.spec.servers[?port.protocol == 'HTTPS' && (tls && tls.mode == 'SIMPLE' && tls.credentialName) ].hosts | @[]" | include "backblazeplatform.common.format.literal" | quote }}
 {{- end }}

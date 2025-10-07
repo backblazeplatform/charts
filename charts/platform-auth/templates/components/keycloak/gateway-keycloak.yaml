@@ -7,14 +7,14 @@
 {{- if and $parent.enabled $component.enabled $istio.enabled -}}
 {{- range $host := $parent.hosts }}
 {{- $uniqId := sha256sum $host | trunc 8 }}
-{{- include "skyfjell.common.require.api.istio.gateway" $ -}}
+{{- include "backblazeplatform.common.require.api.istio.gateway" $ -}}
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: {{ list $parent.name $uniqId $ | include "platform-auth.format.name" }}
   namespace: {{ $gateway.namespace }}
-  labels: {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+  labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
 spec:
   selector:
     {{- $selector := $gateway.selector | default $gateway.selector }}

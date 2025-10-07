@@ -1,8 +1,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
-  name: skyfjell
+  name: backblazeplatform
   namespace: flux-system
 spec:
-  url: https://charts.skyfjell.io/
+  url: https://charts.backblazeplatform.io/
   interval: 10m

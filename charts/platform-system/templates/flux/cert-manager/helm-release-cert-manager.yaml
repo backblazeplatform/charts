@@ -1,4 +1,4 @@
-{{- include "skyfjell.common.require.api.flux.helm-release" . -}}
+{{- include "backblazeplatform.common.require.api.flux.helm-release" . -}}
 {{- $component := .Values.components.certManager -}}
 {{- $solution := .Values.solution -}}
 
@@ -17,7 +17,7 @@ metadata:
   namespace: {{ $solution.namespace | quote }}
   labels:
     {{- include "platform-system.labels" $ | nindent 4 }}
-    {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+    {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
 spec:
   releaseName: {{ list $component.name $ | include "platform-system.format.name" }}
   {{- if .Values.components.istio.enabled }}
@@ -26,7 +26,7 @@ spec:
     - name: {{ list $istio.name $istio.components.istiod.name $ | include "platform-system.format.name" }}
       namespace: {{ $solution.namespace }}
   {{- end }}
-  targetNamespace: {{ list $component . | include "skyfjell.common.format.component.namespace" }}
+  targetNamespace: {{ list $component . | include "backblazeplatform.common.format.component.namespace" }}
   chart:
     spec:
       chart: cert-manager

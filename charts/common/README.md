@@ -1,6 +1,6 @@
-# Skyfjell Platform Common Helm Library Chart
+# Backblaze Platform Platform Common Helm Library Chart
 
-Common templates for other skyfjell charts.
+Common templates for other backblazeplatform charts.
 
 Provides:
 
@@ -16,6 +16,6 @@ Validation of the current cluster contexts APIs are performed on installation, t
 To disable API/CRD validation checks when templating, in development, or for dry runs:
 
 ```shell
-$ helm template skyfjell/[chart-name] \
-  --set"global.skyfjell.validate.api=false"
+$ helm template backblazeplatform/[chart-name] \
+  --set"global.backblazeplatform.validate.api=false"
 ```

@@ -3,20 +3,20 @@
 {{- $gateway := $istio.components.gateway -}}
 
 {{- if and $istio.enabled $gateway.enabled $component.enabled -}}
-{{- include "skyfjell.common.require.api.istio.authorization-policy" $ -}}
+{{- include "backblazeplatform.common.require.api.istio.authorization-policy" $ -}}
 
-{{ $namespace := list $component $ | include "skyfjell.common.format.component.namespace" }}
+{{ $namespace := list $component $ | include "backblazeplatform.common.format.component.namespace" }}
 ---
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
   name: {{ list $gateway.namespace $gateway.name $component.name $ | include "platform-auth.format.name" }}
   namespace: {{ $namespace }}
-  labels: {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
-    skyfjell.io/from: {{ $gateway.name }}
-    skyfjell.io/from-ns: {{ $gateway.namespace }}
-    skyfjell.io/to: {{ $component.name }}
-    skyfjell.io/to-ns: {{ $namespace }}
+  labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
+    backblazeplatform.io/from: {{ $gateway.name }}
+    backblazeplatform.io/from-ns: {{ $gateway.namespace }}
+    backblazeplatform.io/to: {{ $component.name }}
+    backblazeplatform.io/to-ns: {{ $namespace }}
 spec:
   action: ALLOW
   selector:

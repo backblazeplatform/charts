@@ -1,4 +1,4 @@
-# Skyfjell Kyverno Policies Helm Chart
+# Backblaze Platform Kyverno Policies Helm Chart
 
 A collection of Kyverno policies.
 

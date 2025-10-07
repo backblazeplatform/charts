@@ -1,12 +1,12 @@
 {{- if .Values.components.authProxy.enabled -}}
-{{- include "skyfjell.common.require.api.flux.helm-release" . -}}
+{{- include "backblazeplatform.common.require.api.flux.helm-release" . -}}
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: {{ list "proxy" . | include "platform-tenant.format.name.shared" }}
   namespace: {{ .Values.components.flux.namespace }}
-  labels: {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+  labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
 spec:
   chart:
     spec:

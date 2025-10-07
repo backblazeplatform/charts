@@ -7,7 +7,7 @@ Expand the name of the chart.
 
 {{- define "platform-app-config.format.name" -}}
   {{- $ := last . -}}
-  {{- prepend . $.Values.prefix | initial | include "skyfjell.common.format.name" -}}
+  {{- prepend . $.Values.prefix | initial | include "backblazeplatform.common.format.name" -}}
 {{- end }}
 
 {{/*

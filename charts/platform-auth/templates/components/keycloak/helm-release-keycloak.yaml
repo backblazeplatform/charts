@@ -2,7 +2,7 @@
 {{- $component := $parent.components.server -}}
 
 {{- if and $parent.enabled $component.enabled -}}
-{{- include "skyfjell.common.require.api.flux.helm-release" . -}}
+{{- include "backblazeplatform.common.require.api.flux.helm-release" . -}}
 {{- $name := list $parent.name $ | include "platform-auth.format.name" -}}
 {{- $dbName := list $parent.name $parent.components.database.name $ | include "platform-auth.format.name" -}}
 
@@ -14,10 +14,10 @@ kind: HelmRelease
 metadata:
   name: {{ $name }}
   namespace: {{ .Values.components.flux.namespace }}
-  labels: {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+  labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
 spec:
   releaseName: {{ $name }}
-  targetNamespace: {{ list $parent $ | include "skyfjell.common.format.component.namespace" }}
+  targetNamespace: {{ list $parent $ | include "backblazeplatform.common.format.component.namespace" }}
   {{- if $parent.components.database.enabled }}
   dependsOn:
     - name: {{ $dbName }}

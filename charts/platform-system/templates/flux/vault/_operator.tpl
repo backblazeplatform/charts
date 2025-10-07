@@ -9,7 +9,7 @@
 {{- $tol := default $global.tolerations $component.tolerations $parent.nodeSelector -}}
 {{- $aff := default $global.affinity $component.affinity $parent.affinity -}}
 
-fullnameOverride: {{ list $parent.name $component.name | include "skyfjell.common.format.name" }}
+fullnameOverride: {{ list $parent.name $component.name | include "backblazeplatform.common.format.name" }}
 {{- with $aff }}
 affinity:
   {{- toYaml . | nindent 2 }}

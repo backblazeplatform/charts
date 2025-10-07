@@ -7,7 +7,7 @@ kind: AuthorizationPolicy
 metadata:
   name: {{ list "allow" "http" . | include "platform-tenant.format.name.shared" }}
   namespace: {{ $gateway.namespace }}
-  labels: {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+  labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
 spec:
   action: ALLOW
   selector:

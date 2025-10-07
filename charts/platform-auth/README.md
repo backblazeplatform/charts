@@ -1,4 +1,4 @@
-# Skyfjell Platform Auth Helm Chart
+# Backblaze Platform Platform Auth Helm Chart
 
 The Platform Auth chart installs authn/authz services, and configuration between those services and system(`platform-system`) services.
 
@@ -36,10 +36,10 @@ components:
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
-  name: skyfjell
+  name: backblazeplatform
   namespace: flux-system
 spec:
-  url: https://charts.skyfjell.io/
+  url: https://charts.backblazeplatform.io/
   interval: 1m
 ```
 
@@ -56,24 +56,24 @@ spec:
       chart: charts/platform-auth
       sourceRef:
         kind: GitRepository
-        name: skyfjell
+        name: backblazeplatform
         namespace: flux-system
   interval: 0h10m0s
 ```
 
 ### CLI
 
-Add the skyfjell repo if necessary:
+Add the backblazeplatform repo if necessary:
 
 ```shell
-$ helm repo add skyfjell https://charts.skyfjell.io
+$ helm repo add backblazeplatform https://charts.backblazeplatform.io
 $ helm repo update
 ```
 
 Basic installation:
 
 ```shell
-$ helm install system skyfjell/platform-system
+$ helm install system backblazeplatform/platform-system
 ```
 
 ## Configuration

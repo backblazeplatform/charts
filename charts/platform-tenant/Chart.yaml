@@ -1,9 +1,9 @@
 apiVersion: v2
 name: platform-tenant
-description: Skyfjell Platform Tenant Chart
+description: Backblaze Platform Platform Tenant Chart
 type: application
 version: 0.1.0
 dependencies:
   - name: common
-    repository: "@skyfjell"
+    repository: "@backblazeplatform"
     version: "0.0.x"

@@ -6,7 +6,7 @@ Expand the name of the chart.
 {{- end }}
 
 {{- define "kyverno-policies.format.name" -}}
-  {{- last . | include "kyverno-policies.name" | prepend . | initial | include "skyfjell.common.format.name" -}}
+  {{- last . | include "kyverno-policies.name" | prepend . | initial | include "backblazeplatform.common.format.name" -}}
 {{- end }}
 
 {{/*

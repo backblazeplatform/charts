@@ -5,14 +5,14 @@
 {{- $name := list $key $ | include "platform-tenant.format.name.local" -}}
 {{- $namespace := list $ | include "platform-tenant.format.namespace" -}}
 
-{{- include "skyfjell.common.require.api.kyverno.cluster-policy" . -}}
+{{- include "backblazeplatform.common.require.api.kyverno.cluster-policy" . -}}
 ---
 apiVersion: kyverno.io/v1
 kind: Policy
 metadata:
   name: {{ $name }}
   namespace: {{ $namespace }}
-  labels: {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+  labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
   annotations:
     policies.kyverno.io/title: Scheduling policy
     policies.kyverno.io/category: Pod Scheduling

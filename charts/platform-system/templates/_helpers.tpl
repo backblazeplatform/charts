@@ -7,7 +7,7 @@ Expand the name of the chart.
 
 {{- define "platform-system.format.name" -}}
   {{- $ := last . -}}
-  {{- prepend . $.Values.prefix | initial | include "skyfjell.common.format.name" -}}
+  {{- prepend . $.Values.prefix | initial | include "backblazeplatform.common.format.name" -}}
 {{- end }}
 
 {{/*
@@ -70,11 +70,11 @@ Create the name of the service account to use
   {{- $ := . -}}
   {{- $kyverno := $.Values.components.kyverno -}}
   {{- $kyvernoPolicies := $kyverno.components.policies -}}
-  {{- $skyfjellPolicies := $kyverno.components.skyfjellPolicies -}}
+  {{- $backblazeplatformPolicies := $kyverno.components.backblazeplatformPolicies -}}
 {{- if and $kyverno.enabled $kyvernoPolicies.enabled -}}
 - name: {{ list $kyverno.name $kyvernoPolicies.name $ | include "platform-system.format.name" }}
 {{- end }}
-{{- if and $kyverno.enabled $skyfjellPolicies.enabled }}
-- name: {{ list $kyverno.name $skyfjellPolicies.name $ | include "platform-system.format.name" }}
+{{- if and $kyverno.enabled $backblazeplatformPolicies.enabled }}
+- name: {{ list $kyverno.name $backblazeplatformPolicies.name $ | include "platform-system.format.name" }}
 {{- end }}
 {{- end }}

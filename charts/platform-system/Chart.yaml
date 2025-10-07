@@ -1,9 +1,9 @@
 apiVersion: v2
 name: platform-system
-description: Skyfjell Platform System Chart
+description: Backblaze Platform Platform System Chart
 type: application
 version: 0.1.1
 dependencies:
   - name: common
-    repository: "@skyfjell"
+    repository: "@backblazeplatform"
     version: "0.0.x"

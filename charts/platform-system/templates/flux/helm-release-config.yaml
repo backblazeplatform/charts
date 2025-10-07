@@ -4,7 +4,7 @@
 {{- $velero := .Values.components.velero -}}
 {{- $certManager := .Values.components.certManager -}}
 {{- $schedule := $velero.components.schedule -}}
-{{- $repo := .Values.components.helmRepositories.components.skyfjell -}}
+{{- $repo := .Values.components.helmRepositories.components.backblazeplatform -}}
 {{- $sourceName := list $repo.name $ | include "platform-system.format.name" -}}
 {{- $sourceName := default $sourceName $component.chart.source.name -}}
 
@@ -44,15 +44,15 @@ spec:
       certManager:
         enabled: {{ $certManager.enabled }}
         name: {{ .Values.components.certManager.name }}
-        namespace: {{ list .Values.components.certManager . | include "skyfjell.common.format.component.namespace" }}
+        namespace: {{ list .Values.components.certManager . | include "backblazeplatform.common.format.component.namespace" }}
       istio:
         enabled: {{ $istio.enabled }}
         name: {{ .Values.components.istio.name }}
-        namespace: {{ list .Values.components.istio . | include "skyfjell.common.format.component.namespace" }}
+        namespace: {{ list .Values.components.istio . | include "backblazeplatform.common.format.component.namespace" }}
         mTLSMode: {{ .Values.components.istio.mTLSMode }}
       velero:        
         enabled: {{ and $velero.enabled $schedule.enabled }}
         name: {{ $velero.name }}
-        namespace: {{ list $velero . | include "skyfjell.common.format.component.namespace" }}
+        namespace: {{ list $velero . | include "backblazeplatform.common.format.component.namespace" }}
         schedules: {{- $schedule.schedules | toYaml | nindent 10 }}
 {{- end }}

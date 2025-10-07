@@ -4,7 +4,7 @@
 {{- range $appKey := (keys $apps | sortAlpha) -}}
 {{- $app := get $apps $appKey -}}
 {{- if and $app.host $.Values.components.certManager.enabled $istio.enabled $gateway.enabled -}}
-{{- include "skyfjell.common.require.api.istio.gateway" $ -}}
+{{- include "backblazeplatform.common.require.api.istio.gateway" $ -}}
 {{- $appName := default $appKey $app.name -}}
 ---
 apiVersion: networking.istio.io/v1alpha3
@@ -12,7 +12,7 @@ kind: Gateway
 metadata:
   name: {{ list $appName $ | include "platform-app-config.format.name" }}
   namespace: {{ $gateway.namespace }}
-  labels: {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+  labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
   {{- include "platform-app-config.labels" $ | nindent 4 }}
 spec:
   selector:

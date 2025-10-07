@@ -5,7 +5,7 @@
 
 {{- if and $parent.enabled $component.enabled $parent.hosts $istio.enabled $gateway.enabled -}}
 {{- range $host := $parent.hosts }}
-{{- include "skyfjell.common.require.api.istio.authorization-policy" $ -}}
+{{- include "backblazeplatform.common.require.api.istio.authorization-policy" $ -}}
 {{- $uniqId := sha256sum $host | trunc 8 -}}
 ---
 apiVersion: security.istio.io/v1beta1
@@ -13,10 +13,10 @@ kind: AuthorizationPolicy
 metadata:
   name: {{ list $parent.namespace $parent.name "http" $uniqId $ | include "platform-auth.format.name" }}
   namespace: {{ $gateway.namespace }}
-  labels: {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
-    skyfjell.io/from: {{ list $host "http" | include "skyfjell.common.format.name" }}
-    skyfjell.io/to-ns: {{ $gateway.namespace }}
-    skyfjell.io/to: {{ list $gateway.name "http" | include "skyfjell.common.format.name" }}
+  labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
+    backblazeplatform.io/from: {{ list $host "http" | include "backblazeplatform.common.format.name" }}
+    backblazeplatform.io/to-ns: {{ $gateway.namespace }}
+    backblazeplatform.io/to: {{ list $gateway.name "http" | include "backblazeplatform.common.format.name" }}
 spec:
   action: ALLOW
   selector:

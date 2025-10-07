@@ -131,6 +131,6 @@ global:
   labels: {}
   nodeSelector: {}
   tolerations: []
-  skyfjell:
+  backblazeplatform:
     validate:
       api: true

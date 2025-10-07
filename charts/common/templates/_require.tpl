@@ -1,7 +1,7 @@
 {{/*
   Validate the existence of a Kubernetes API/CRD object and version.
 */}}
-{{- define "skyfjell.common.require.api.check" -}}
+{{- define "backblazeplatform.common.require.api.check" -}}
   {{- $ :=  last . -}}
   {{- $api := first . -}}
   {{- $kind := rest . | first -}}
@@ -20,19 +20,19 @@
 {{/*
   Validate the existence of a Kubernetes API/CRD object and version.
 
-  Usage: `{{ list "Flux not installed" "helm.toolkit.fluxcd.io" "HelmRelease" $ | include "skyfjell.common.require.api" }}`
+  Usage: `{{ list "Flux not installed" "helm.toolkit.fluxcd.io" "HelmRelease" $ | include "backblazeplatform.common.require.api" }}`
 */}}
-{{- define "skyfjell.common.require.api" }}
+{{- define "backblazeplatform.common.require.api" }}
   {{- $ :=  last . -}}
   {{- $apiMessage := first . -}}
   {{- $api := rest . | first -}}
   {{- $kind := initial . | last -}}
-  {{- $helpMessage := "To disable these checks see: https://github.com/skyfjell/charts/tree/main/charts/common/README.md#api-validation" -}}
+  {{- $helpMessage := "To disable these checks see: https://github.com/backblazeplatform/charts/tree/main/charts/common/README.md#api-validation" -}}
 
-  {{- $valid := list $api $kind $ | include "skyfjell.common.require.api.check" -}}
+  {{- $valid := list $api $kind $ | include "backblazeplatform.common.require.api.check" -}}
   {{- $valid := eq $valid "true" -}}
 
-  {{- $enabled := ((($.Values.global).skyfjell).validate).api -}}
+  {{- $enabled := ((($.Values.global).backblazeplatform).validate).api -}}
 
   {{- if ne $enabled false -}}
     {{- if eq $valid false -}}

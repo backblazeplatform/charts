@@ -9,14 +9,14 @@ Expand the name of the chart.
   {{- $ := last . -}}
   {{- $name := last . | include "platform-tenant.name" -}}
   {{- $name := default $name $.Values.fullnameOverride -}}
-  {{- $name | prepend . | initial | include "skyfjell.common.format.name" -}}
+  {{- $name | prepend . | initial | include "backblazeplatform.common.format.name" -}}
 {{- end -}}
 
 {{- define "platform-tenant.format.name.shared" -}}
   {{- $ := last . -}}
   {{- $prefix := $.Values.prefix -}}
   {{- $name := . | include "platform-tenant.format.name.local" -}}
-  {{- $name := list $prefix $name | include "skyfjell.common.format.name" -}}
+  {{- $name := list $prefix $name | include "backblazeplatform.common.format.name" -}}
   {{- default $name $.Values.fullnameOverride -}}
 {{- end -}}
 

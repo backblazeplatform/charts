@@ -1,17 +1,17 @@
-{{- define "skyfjell.common.format.name" -}}
+{{- define "backblazeplatform.common.format.name" -}}
   {{- compact . | join "-" | lower | trunc 63 | trimSuffix "-" -}}
 {{- end }}
 
-{{- define "skyfjell.common.format.component.namespace" -}}
+{{- define "backblazeplatform.common.format.component.namespace" -}}
   {{- $ := last . -}}
   {{- $component := first . -}}
-  {{- default $component.name $component.namespace | list $.Values.prefix | include "skyfjell.common.format.name" -}}
+  {{- default $component.name $component.namespace | list $.Values.prefix | include "backblazeplatform.common.format.name" -}}
 {{- end -}}
 
-{{- define "skyfjell.common.format.literal" -}}
+{{- define "backblazeplatform.common.format.literal" -}}
 {{ "{{ " }}{{ . }}{{ " }}" }}
 {{- end -}}
 
-{{- define "skyfjell.common.format.safe" -}}
+{{- define "backblazeplatform.common.format.safe" -}}
   {{- regexReplaceAll "[^.a-zA-Z0-9-]+" . "-" | trimAll "-" | lower -}}
 {{- end -}}

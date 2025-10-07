@@ -26,7 +26,7 @@ kind: VirtualService
 metadata:
   name: {{ list $app.name $ | include "platform-tenant.format.name.shared" }}
   namespace: {{ list $ | include "platform-tenant.format.namespace" }}
-  labels: {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+  labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
 spec:
   hosts:
     - {{ $app.host }}

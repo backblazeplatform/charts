@@ -8,13 +8,13 @@ components:
         name: namespace-injection
       # istioProxyQuit handles the kyverno policies for attaching an additional container
       # on job pods to kill the istio side car.
-      # see https://github.com/skyfjell/istio-proxy-quit
+      # see https://github.com/backblazeplatform/istio-proxy-quit
       proxyQuit:
         # enabled flag for installing this component
         enabled: true
         name: proxy-quit
         image:
-          registry: ghcr.io/skyfjell
+          registry: ghcr.io/backblazeplatform
           repository: istio-proxy-quit
           tag: 0.0.4
           pullPolicy: IfNotPresent

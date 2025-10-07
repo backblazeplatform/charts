@@ -4,7 +4,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: {{ list . | include "platform-tenant.format.namespace" }}
-  labels: {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+  labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
   {{- with $component.labels }}
     {{- toYaml . | nindent 4 }}
   {{- end }}

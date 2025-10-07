@@ -62,7 +62,7 @@ dbchecker:
   enabled: true
 database:
   vendor: postgres
-  hostname: {{ list $parent.name $parent.components.database.name | include "skyfjell.common.format.name" }}
+  hostname: {{ list $parent.name $parent.components.database.name | include "backblazeplatform.common.format.name" }}
   port: 5432
   database: {{ $parent.components.database.auth.database }}
   username: {{ $parent.components.database.auth.username }}

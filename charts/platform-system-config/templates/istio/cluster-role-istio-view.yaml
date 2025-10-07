@@ -4,7 +4,7 @@ kind: ClusterRole
 metadata:
   name: platform-system-istio-view
   labels:
-    "rbac.skyfjell.io/aggregate-to-platform-view": "true"
+    "rbac.backblazeplatform.io/aggregate-to-platform-view": "true"
 rules:
   - apiGroups:
       - authorizationpolicies.security.istio.io

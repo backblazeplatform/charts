@@ -39,12 +39,12 @@ jobs:
       - name: Setup Deps ${{ matrix.manifest }}
         working-directory: charts/${{ matrix.manifest }}
         run: |
-          helm repo add skyfjell https://charts.skyfjell.io
+          helm repo add backblazeplatform https://backblazeplatform.github.io/charts
           helm dependency update
       - name: Test ${{ matrix.manifest }} Examples
         working-directory: charts/${{ matrix.manifest }}
         run: |
-          helm template --dry-run --debug test . --set "global.skyfjell.validate.api=false" -f examples/values.test.yaml
+          helm template --dry-run --debug test . --set "global.backblazeplatform.validate.api=false" -f examples/values.test.yaml
   test-libraries:
     runs-on: ubuntu-latest
     steps:
@@ -68,4 +68,4 @@ jobs:
           mkdir templates/
           cp -r ../../charts/charts/common/examples ./templates
           helm dependency update
-          helm template --dry-run --debug test . --set "global.skyfjell.validate.api=false"
+          helm template --dry-run --debug test . --set "global.backblazeplatform.validate.api=false"

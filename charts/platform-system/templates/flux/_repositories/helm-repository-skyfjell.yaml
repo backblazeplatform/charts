@@ -1,4 +1,4 @@
-{{- $component := .Values.components.helmRepositories.components.skyfjell -}}
+{{- $component := .Values.components.helmRepositories.components.backblazeplatform -}}
 
 {{- if and $component.enabled (eq .Values.solution.name "flux") -}}
 ---
@@ -9,7 +9,7 @@ metadata:
   namespace: {{ .Values.solution.namespace | quote }}
   labels:
     {{- include "platform-system.labels" $ | nindent 4 }}
-    {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+    {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
 spec:
   url: {{ $component.url }}
   interval: {{ default .Values.solution.interval $component.interval }}

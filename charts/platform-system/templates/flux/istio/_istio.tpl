@@ -13,7 +13,7 @@
 {{- define "platform-system.components.istio.components.base.defaultValues" -}}
 {{- $parent := .Values.components.istio }}
 global:
-  istioNamespace: {{ list $parent $ | include "skyfjell.common.format.component.namespace" }}
+  istioNamespace: {{ list $parent $ | include "backblazeplatform.common.format.component.namespace" }}
 {{- end -}}
 
 {{- define "platform-system.components.istio.components.base.values" }}
@@ -37,7 +37,7 @@ global:
 {{- $aff := default $global.affinity $parent.affinity $component.affinity  -}}
 
 global:
-  istioNamespace: {{ list $parent $ | include "skyfjell.common.format.component.namespace" }}
+  istioNamespace: {{ list $parent $ | include "backblazeplatform.common.format.component.namespace" }}
 {{- if or $anno $nodeSel $tol }}
 pilot:
   {{- with $anno }}

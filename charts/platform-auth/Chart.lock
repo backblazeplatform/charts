@@ -1,6 +1,6 @@
 dependencies:
 - name: common
-  repository: https://charts.skyfjell.io
+  repository: https://charts.backblazeplatform.io
   version: 0.0.11
 digest: sha256:53f579a82116c1c45697561fc6ada35f37200f10bd44e9dac1a5b00af245fdd6
 generated: "2023-02-07T12:50:14.861471707-06:00"

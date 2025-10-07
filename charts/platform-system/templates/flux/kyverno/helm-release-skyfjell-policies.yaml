@@ -1,9 +1,9 @@
-{{- $key := "skyfjellPolicies" -}}
+{{- $key := "backblazeplatformPolicies" -}}
 {{- $parent := .Values.components.kyverno -}}
 {{- $component := get $parent.components $key -}}
 {{- $solution := .Values.solution -}}
 
-{{- $repo := .Values.components.helmRepositories.components.skyfjell -}}
+{{- $repo := .Values.components.helmRepositories.components.backblazeplatform -}}
 {{- $sourceName := list $repo.name $ | include "platform-system.format.name" -}}
 {{- $sourceName := default $sourceName $component.chart.source.name -}}
 
@@ -16,10 +16,10 @@ metadata:
   namespace: {{ $solution.namespace | quote }}
   labels:
     {{- include "platform-system.labels" $ | nindent 4 }}
-    {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+    {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
 spec:
   releaseName: {{ list $parent.name $component.name $ | include "platform-system.format.name" }}
-  targetNamespace: {{ list $parent . | include "skyfjell.common.format.component.namespace" }}
+  targetNamespace: {{ list $parent . | include "backblazeplatform.common.format.component.namespace" }}
   dependsOn:
     {{- if $parent.enabled }}
     - name: {{ list $parent.name $ | include "platform-system.format.name" }}

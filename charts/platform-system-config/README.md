@@ -1,4 +1,4 @@
-# Skyfjell Platform System Configuration Chart
+# Backblaze Platform Platform System Configuration Chart
 
 This chart creates resources depending on CRDs in `platform-system`.
 

@@ -1,14 +1,14 @@
 {{- $flux := .Values.components.flux -}}
 {{- $source := $flux.components.source -}}
 {{- if and $flux.enabled $source.enabled -}}
-{{- include "skyfjell.common.require.api.flux.source" . -}}
+{{- include "backblazeplatform.common.require.api.flux.source" . -}}
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: GitRepository
 metadata:
   name: {{ list $source.name . | include "platform-tenant.format.name.shared" }}
   namespace: {{ $flux.namespace }}
-  labels: {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+  labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
 spec:
   url: {{ $source.url }}
   interval: 1m

@@ -7,14 +7,14 @@
 {{- if and $parent.hosts $component.enabled $istio.enabled -}}
 {{- range $host := $parent.hosts }}
 {{- $uniqId := sha256sum $host | trunc 8 -}}
-{{- include "skyfjell.common.require.api.istio.vs" $ -}}
+{{- include "backblazeplatform.common.require.api.istio.vs" $ -}}
 ---
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: {{ list $parent.name $uniqId $ | include "platform-auth.format.name" | trunc 63 }}
-  namespace: {{ list $parent $ | include "skyfjell.common.format.component.namespace" }}
-  labels: {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+  namespace: {{ list $parent $ | include "backblazeplatform.common.format.component.namespace" }}
+  labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
 spec:
   hosts:
     - {{ $host }}
@@ -28,6 +28,6 @@ spec:
         - destination:
             port:
               number: 80
-            host: {{ list $parent.name "http" | include "skyfjell.common.format.name" }}
+            host: {{ list $parent.name "http" | include "backblazeplatform.common.format.name" }}
 {{- end }}
 {{- end }}

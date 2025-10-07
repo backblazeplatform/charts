@@ -2,7 +2,7 @@
 {{- $component := .Values.components.keycloak.components.database -}}
 {{- $parent := .Values.components.keycloak -}}
 {{- $server := $parent.components.server -}}
-{{- $name := list $parent.name $component.name | include "skyfjell.common.format.name" -}}
+{{- $name := list $parent.name $component.name | include "backblazeplatform.common.format.name" -}}
 {{- $nodeSel := merge $.Values.global.nodeSelector $parent.nodeSelector $component.nodeSelector -}}
 {{- $tol := default $.Values.global.tolerations ( default $parent.tolerations $component.tolerations ) -}}
 

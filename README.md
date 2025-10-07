@@ -1,11 +1,11 @@
-# Skyfjell Helm Charts
+# Backblaze Platform Helm Charts
 
 Repo Setup and Installation:
 
 ```
-helm repo add skyfjell https://charts.skyfjell.io
+helm repo add backblazeplatform https://backblazeplatform.github.io/charts
 helm repo update
-helm install [release-name] skyfjell/[chart-name]
+helm install [release-name] backblazeplatform/[chart-name]
 ```
 
 ## [null](./charts/null)

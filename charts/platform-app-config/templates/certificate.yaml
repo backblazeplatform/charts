@@ -4,7 +4,7 @@
 {{- $istio := $.Values.components.istio -}}
 {{- $gateway := $istio.components.gateway -}}
 {{- if and $app.host $.Values.components.certManager.enabled $istio.enabled $gateway.enabled $.Values.components.certManager.issuerRef -}}
-{{- include "skyfjell.common.require.api.cert-manager.certificate" $ -}}
+{{- include "backblazeplatform.common.require.api.cert-manager.certificate" $ -}}
 {{- $appName := default $appKey $app.name -}}
 ---
 apiVersion: cert-manager.io/v1
@@ -12,7 +12,7 @@ kind: Certificate
 metadata:
   name: {{ list $appName $ | include "platform-app-config.format.name" }}
   namespace: {{ $gateway.namespace }}
-  labels: {{- include "skyfjell.common.chartLabels" $ | nindent 4 }}
+  labels: {{- include "backblazeplatform.common.chartLabels" $ | nindent 4 }}
   {{- include "platform-app-config.labels" $ | nindent 4 }}
 spec:
   secretName: {{ printf "%s-tls" ( list $appName ( default $appName $app.namespace ) $ | include "platform-app-config.format.name" ) }}
