@@ -28,6 +28,11 @@ jobs:
         with:
           version: v3.8.1
 
+      - name: Add Helm repository
+        run: |
+          helm repo add backblazeplatform https://backblazeplatform.github.io/charts || echo "Repo not available yet, continuing..."
+          helm repo update || echo "Repo update failed, continuing..."
+
       - name: Create gh-pages branch if it doesn't exist
         run: |
           if ! git ls-remote --heads origin gh-pages | grep -q gh-pages; then
