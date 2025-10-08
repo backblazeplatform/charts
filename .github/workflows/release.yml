@@ -33,17 +33,17 @@ jobs:
           # First package the common chart since other charts depend on it
           helm package charts/common -d /tmp/charts
 
-          # For each chart with dependencies, update to use local common chart temporarily
+          # Create a helm repo from the packaged common chart
+          helm repo index /tmp/charts --url file:///tmp/charts
+          helm repo add backblazeplatform file:///tmp/charts
+
+          # Update dependencies for all charts that need it
           for chart in charts/*/Chart.yaml; do
             if grep -q "repository.*@backblazeplatform" "$chart"; then
               chart_dir=$(dirname "$chart")
-              # Create a helm repo from the packaged common chart
-              helm repo index /tmp/charts --url file:///tmp/charts
-              helm repo add backblazeplatform file:///tmp/charts 2>/dev/null || true
-              helm repo update
               cd "$chart_dir"
               helm dependency update
-              cd -
+              cd - > /dev/null
             fi
           done
 
