@@ -39,9 +39,9 @@ jobs:
           fi
 
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.4.0
+        uses: helm/chart-releaser-action@v1.6.0
         with:
-          charts_repo_url: https://backblazeplatform.github.io/charts
+          charts_dir: charts
+          skip_existing: true
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          CR_SKIP_EXISTING: true
