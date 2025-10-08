@@ -8,7 +8,7 @@ entries:
     name: common
     type: library
     urls:
-    - https://github.com/backblazeplatform/charts/releases/download/common-0.0.13.tgz
+    - https://github.com/backblazeplatform/charts/releases/download/common-0.0.13/common-0.0.13.tgz
     version: 0.0.13
   keycloak-slackbot:
   - apiVersion: v2
@@ -20,7 +20,7 @@ entries:
     name: keycloak-slackbot
     type: application
     urls:
-    - https://github.com/backblazeplatform/charts/releases/download/keycloak-slackbot-0.0.1.tgz
+    - https://github.com/backblazeplatform/charts/releases/download/keycloak-slackbot-0.0.1/keycloak-slackbot-0.0.1.tgz
     version: 0.0.1
   kyverno-policies:
   - apiVersion: v2
@@ -34,7 +34,7 @@ entries:
     name: kyverno-policies
     type: application
     urls:
-    - https://github.com/backblazeplatform/charts/releases/download/kyverno-policies-0.1.1.tgz
+    - https://github.com/backblazeplatform/charts/releases/download/kyverno-policies-0.1.1/kyverno-policies-0.1.1.tgz
     version: 0.1.1
   "null":
   - apiVersion: v2
@@ -45,7 +45,7 @@ entries:
     name: "null"
     type: application
     urls:
-    - https://github.com/backblazeplatform/charts/releases/download/null-0.0.1.tgz
+    - https://github.com/backblazeplatform/charts/releases/download/null-0.0.1/null-0.0.1.tgz
     version: 0.0.1
   platform-app-config:
   - apiVersion: v2
@@ -59,7 +59,7 @@ entries:
     name: platform-app-config
     type: application
     urls:
-    - https://github.com/backblazeplatform/charts/releases/download/platform-app-config-0.0.1.tgz
+    - https://github.com/backblazeplatform/charts/releases/download/platform-app-config-0.0.1/platform-app-config-0.0.1.tgz
     version: 0.0.1
   platform-auth:
   - apiVersion: v2
@@ -73,7 +73,7 @@ entries:
     name: platform-auth
     type: application
     urls:
-    - https://github.com/backblazeplatform/charts/releases/download/platform-auth-0.2.0.tgz
+    - https://github.com/backblazeplatform/charts/releases/download/platform-auth-0.2.0/platform-auth-0.2.0.tgz
     version: 0.2.0
   platform-system:
   - apiVersion: v2
@@ -87,7 +87,7 @@ entries:
     name: platform-system
     type: application
     urls:
-    - https://github.com/backblazeplatform/charts/releases/download/platform-system-0.1.1.tgz
+    - https://github.com/backblazeplatform/charts/releases/download/platform-system-0.1.1/platform-system-0.1.1.tgz
     version: 0.1.1
   platform-system-config:
   - apiVersion: v2
@@ -101,7 +101,7 @@ entries:
     name: platform-system-config
     type: application
     urls:
-    - https://github.com/backblazeplatform/charts/releases/download/platform-system-config-0.1.0.tgz
+    - https://github.com/backblazeplatform/charts/releases/download/platform-system-config-0.1.0/platform-system-config-0.1.0.tgz
     version: 0.1.0
   platform-tenant:
   - apiVersion: v2
@@ -115,6 +115,6 @@ entries:
     name: platform-tenant
     type: application
     urls:
-    - https://github.com/backblazeplatform/charts/releases/download/platform-tenant-0.1.0.tgz
+    - https://github.com/backblazeplatform/charts/releases/download/platform-tenant-0.1.0/platform-tenant-0.1.0.tgz
     version: 0.1.0
 generated: "2025-10-08T13:51:37.95609-05:00"
