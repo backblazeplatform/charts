@@ -28,25 +28,6 @@ jobs:
         with:
           version: v3.8.1
 
-      - name: Update chart dependencies
-        run: |
-          # First package the common chart since other charts depend on it
-          helm package charts/common -d /tmp/charts
-
-          # Create a helm repo from the packaged common chart
-          helm repo index /tmp/charts --url file:///tmp/charts
-          helm repo add backblazeplatform file:///tmp/charts
-
-          # Update dependencies for all charts that need it
-          for chart in charts/*/Chart.yaml; do
-            if grep -q "repository.*@backblazeplatform" "$chart"; then
-              chart_dir=$(dirname "$chart")
-              cd "$chart_dir"
-              helm dependency update
-              cd - > /dev/null
-            fi
-          done
-
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.4.0
         with:

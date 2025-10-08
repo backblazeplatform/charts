@@ -5,5 +5,5 @@ type: application
 version: 0.1.0
 dependencies:
   - name: common
-    repository: "@backblazeplatform"
+    repository: "file://../common"
     version: "0.0.x"
