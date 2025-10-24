@@ -63,6 +63,19 @@ entries:
     version: 0.0.1
   platform-auth:
   - apiVersion: v2
+    created: "2025-10-24T18:37:40.531360016Z"
+    dependencies:
+    - name: common
+      repository: '@backblazeplatform'
+      version: 0.0.x
+    description: Backblaze Platform Platform Auth Chart
+    digest: 70dd13d9696e8000e3a29b3a2ce8ac45f31001a22fe0d59c74c61fc646a39ba4
+    name: platform-auth
+    type: application
+    urls:
+    - https://github.com/backblazeplatform/charts/releases/download/platform-auth-0.2.1/platform-auth-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
     created: "2025-10-08T13:51:37.958295-05:00"
     dependencies:
     - name: common
@@ -117,4 +130,4 @@ entries:
     urls:
     - https://github.com/backblazeplatform/charts/releases/download/platform-tenant-0.1.0/platform-tenant-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-08T13:51:37.95609-05:00"
+generated: "2025-10-24T18:37:41.721456339Z"
