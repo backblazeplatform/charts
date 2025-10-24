@@ -348,7 +348,7 @@ components:
     namespace: ""
     chart:
       # version of the chart
-      version: "3.0.0"
+      version: "11.1.1"
       # source of the chart
       source:
         kind: HelmRepository
