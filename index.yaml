@@ -90,6 +90,19 @@ entries:
     version: 0.2.0
   platform-system:
   - apiVersion: v2
+    created: "2025-10-24T20:39:35.850703608Z"
+    dependencies:
+    - name: common
+      repository: '@backblazeplatform'
+      version: 0.0.x
+    description: Backblaze Platform Platform System Chart
+    digest: de2f40575195418f549ea5afa8ea1451a1a4d2c870b7b3319323546e04cf32a3
+    name: platform-system
+    type: application
+    urls:
+    - https://github.com/backblazeplatform/charts/releases/download/platform-system-0.1.3/platform-system-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
     created: "2025-10-24T20:11:30.931787828Z"
     dependencies:
     - name: common
@@ -143,4 +156,4 @@ entries:
     urls:
     - https://github.com/backblazeplatform/charts/releases/download/platform-tenant-0.1.0/platform-tenant-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-24T20:11:30.931801013Z"
+generated: "2025-10-24T20:39:35.850724527Z"
