@@ -32,5 +32,5 @@ spec:
   interval: {{ $solution.interval }}
   values:
 {{- $defaultValues := include "platform-system.components.velero.defaultValues" $ | fromYaml }}
-{{- mergeOverwrite $defaultValues $server.values | toYaml | nindent 4 }}
+{{- mergeOverwrite $server.values $defaultValues | toYaml | nindent 4 }}
 {{- end }}

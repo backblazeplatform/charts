@@ -2,7 +2,7 @@ apiVersion: v2
 name: platform-system
 description: Backblaze Platform Platform System Chart
 type: application
-version: 0.1.2
+version: 0.1.3
 dependencies:
   - name: common
     repository: "@backblazeplatform"
