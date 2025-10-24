@@ -89,7 +89,11 @@ components:
           database: keycloak
         nodeSelector: {}
         tolerations: []
-        values: {}
+        values:
+          image:
+            registry: docker.io
+            repository: bitnamilegacy/postgresql
+            tag: "15.1.0-debian-11-r0"
       gateway:
         # selector for istio gateway
         selector: {}
