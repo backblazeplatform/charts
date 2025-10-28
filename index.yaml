@@ -24,6 +24,19 @@ entries:
     version: 0.0.1
   kyverno-policies:
   - apiVersion: v2
+    created: "2025-10-28T15:34:37.963721724Z"
+    dependencies:
+    - name: common
+      repository: '@backblazeplatform'
+      version: 0.0.x
+    description: A Helm chart for Kyverno policies
+    digest: 0d0176663a77fab805afbceb6d6cbb692b2fa9447159dd8ff0eae50054acda4b
+    name: kyverno-policies
+    type: application
+    urls:
+    - https://github.com/backblazeplatform/charts/releases/download/kyverno-policies-0.1.2/kyverno-policies-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     created: "2025-10-08T13:51:37.957308-05:00"
     dependencies:
     - name: common
@@ -156,4 +169,4 @@ entries:
     urls:
     - https://github.com/backblazeplatform/charts/releases/download/platform-tenant-0.1.0/platform-tenant-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-24T20:39:35.850724527Z"
+generated: "2025-10-28T15:34:37.963741929Z"
